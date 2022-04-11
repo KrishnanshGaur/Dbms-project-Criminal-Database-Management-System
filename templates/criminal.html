@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}
+Add Students
+{% endblock title %}
+
+
+
+{% block body %}
+<br>
+<br>
+<br>
+ <h3 class="text-center"><span>Add Criminal Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4"></div>
+<div class="col-md-4">
+
+<form action="/addcriminal" method="post">
+<div class="form-group">
+
+<label for="caseno">Case Number</label>
+<input type="text" class="form-control" name="caseno" id="caseno">
+</div>
+<br>
+<div class="form-group">
+
+<label for="cname">Criminal Name</label>
+<input type="text" class="form-control" name="cname" id="cname">
+</div>
+<br>
+<div class="form-group">
+
+<label for="uid">UID</label>
+<input type="number" class="form-control" name="uid" id="uid">
+</div>
+<br>
+<div class="form-group">                          
+<select  class="form-control" id="gender" name="gender"  required>
+        <option selected>Select Gender</option>
+    
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+       
+      </select>
+ </div>
+<br>
+
+<div class="form-group">                          
+<select class="form-control" id="branch" name="branch"  required>
+        <option selected>Select Department</option>
+        {% for d in dept  %}
+        <option value="{{d.branch}}">{{d.branch}}</option>
+        {% endfor %}
+      </select>
+ </div>
+<br>
+<div class="form-group">
+
+<label for="date">Date</label>
+<input type="date" class="form-control" name="date" id="date">
+</div>
+<br>
+<div class="form-group">
+<label for="num">Criminal ID</label>
+<input type="number" class="form-control" name="num" id="num">
+</div>
+<br>
+
+<div class="form-group">
+<label for="comments">Comments</label>
+<textarea class="form-control" name="comments" id="comments"></textarea>
+</div>
+<br>
+  
+  <button type="submit" class="btn btn-danger btn-sm btn-block">Add Record</button>
+</form>
+<br>
+<br>
+
+</div>
+
+<div class="col-md-4"></div>
+
+</div></div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+Search
+{% endblock title %}
+
+
+
+{% block body %}
+,<br><br>
+<br>
+ <h3 class="text-center"><span>Search Criminal Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<form action="/search" method="post">
+
+
+<div class="form-group">
+<label for="status">Enter The Case Number</label>
+<input type="number" class="form-control" name="caseno" id="caseno" >
+</div>
+<br>
+
+  <button type="submit" class="btn btn-danger btn-sm btn-block">Search</button>
+</form>
+<br>
+<br>
+
+</div>
+
+
+<div class="col-md-8">
+{% if bio %}
+<br>
+<h3>Criminal Details</h3>
+ <hr>
+ <li>Case No : {{bio.caseno}}</li>
+
+ <li>Name    : {{bio.cname}}</li>
+  <li>UID   : {{bio.uid}}</li>
+  <li>Gender   : {{bio.gender}}</li>
+  <li>Branch  : {{bio.branch}}</li>
+  <li>Date  : {{bio.date}}</li>
+  <li>Criminal ID  : {{bio.number}}</li>
+  <li>Comments  : {{bio.comments}}</li>
+  <hr>
+  <h3>Investigation Status</h3>
+  <hr>
+  <li>Status : {{attend.status}}</li>
+<br><br>
+{% else %}
+No such results
+{% endif %}
+
+</div>
+</div>
+
+
+
+{% endblock body %}
